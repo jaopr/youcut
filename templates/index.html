@@ -7,5 +7,19 @@
 </head>
 <body>
     <h1>Crie seu corte diretamente do YouTube!</h1>
+    <form action="/downloads" method="POST">
+        <label for="url">URL do YouTube:</label>
+        <input type="text" name="url" id="url" required><br><br>
+
+        <label for="start_time">Início (HH:MM:SS):</label>
+        <input type="text" name="start_time" id="start_time" required><br><br>
+
+        <label for="end_time">Início (HH:MM:SS):</label>
+        <input type="text" name="end_time" id="end_time" required><br><br>
+
+        <button type="submit">Cortar Vídeo</button>
+    </form>
+
+
 </body>
 </html>
