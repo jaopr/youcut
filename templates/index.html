@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Crie seu corte diretamente do YouTube!</h1>
-    <form action="/downloads" method="POST">
+    <form action="/download" method="POST">
         <label for="url">URL do YouTube:</label>
         <input type="text" name="url" id="url" required><br><br>
 
@@ -20,6 +20,14 @@
         <button type="submit">Cortar Vídeo</button>
     </form>
 
-
+    <!-- Utilizando o Jinja2
+    Esta condicional verifica se existe o valor video_id, executando ou ignorando o código
+    O formulário só aparece quando um vídeo estiver disponível-->
+    {% if video_id %}
+    <form action="/delete" method="POST">
+        <input type="hidden" name="video_id" value="{{ video_id }}">
+        <button type="submit">OK</button>
+    </form>
+    {% endif%}
 </body>
 </html>
