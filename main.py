@@ -12,3 +12,9 @@ if not os.path.exists(VIDEO_DIR):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/download', methods=['POST'])
+def download():
+    url = request.form['url']
+    start_time = request.form['start_time']
+    end_time = request.form['end_time']
