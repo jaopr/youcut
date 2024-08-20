@@ -5,3 +5,6 @@ import youtube_dl
 
 app = Flask(__name__)
 VIDEO_DIR = './downloads/'
+
+if not os.path.exists(VIDEO_DIR):
+    os.makedirs(VIDEO_DIR)
