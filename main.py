@@ -8,3 +8,7 @@ VIDEO_DIR = './downloads/'
 
 if not os.path.exists(VIDEO_DIR):
     os.makedirs(VIDEO_DIR)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
