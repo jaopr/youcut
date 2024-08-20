@@ -46,3 +46,19 @@ def download():
 
         # Retorna o arquivo diretamente para download
         return send_file(cut_video_path, as_attachment=True)
+
+# App para deletar o arquivo de vídeo original após download
+
+@app.route('/delete', methods=['POST'])
+def delete():
+    video_id = request.form['video_id']
+
+    for file in os.listdir(VIDEO_DIR):
+        if video_id in file:
+            os.remove(os.path.join(VIDEO_DIR, file))
+
+    return redirect(url_for('index'))
+
+# Rodando e Debugando
+if __name__ == '__main__':
+    app.run(debug=True)
