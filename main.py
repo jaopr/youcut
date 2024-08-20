@@ -18,3 +18,15 @@ def download():
     url = request.form['url']
     start_time = request.form['start_time']
     end_time = request.form['end_time']
+
+    # Função para baixar o vídeo
+    ydl_opts = {
+        'outtmpl': VIDEO_DIR + '%(id)s.%(ext)s', # - outtmpl, modelo do nome do arquivo | '%(id)s' marcador de posição, será substituido pelo ID do vídeo | '%(ext)s' será substituido pela extensão do arquivo
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=True)
+        video_id = info['id']
+        video_ext = info['ext']
+        video_filename = f"{video_id}.{video_ext}"
+        video_path = os.path.join(VIDEO_DIR, video_filename)
+
