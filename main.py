@@ -30,3 +30,19 @@ def download():
         video_filename = f"{video_id}.{video_ext}"
         video_path = os.path.join(VIDEO_DIR, video_filename)
 
+        # Função para cortar o vídeo
+        cut_video_filename = f"{video_id}_cut.mp4" # Define o nome do arquivo cortado, ID+cut.mp4
+        cut_video_path = os.path.join(VIDEO_DIR, cut_video_filename) # Caminho onde o vídeo será salvo
+
+        # Usando o ffmpeg para realizar os cortes
+
+        ffmpeg_command = [
+            'ffmpeg', '-i', video_path, '-ss', start_time, '-to', end_time,
+            '-c', 'copy', cut_video_path
+        ]
+        # - i é o caminho do vídeo original | -ss, start time, define o tempo de início | -to, end time, tempo de término | -c, copy, copia o fluxo de dados diretamente
+
+        subprocess.run(ffmpeg_command)
+
+        # Retorna o arquivo diretamente para download
+        return send_file(cut_video_path, as_attachment=True)
